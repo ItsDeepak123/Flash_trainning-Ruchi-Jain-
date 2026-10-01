@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>🏠Library Home</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>📚 Library Management System</h1>
+
+    <a href="{{ url_for('logout') }}">
+        Logout
+    </a>
+
+</header>
+
+<div class="main">
+        <a href="{{ url_for('add_book') }}">
+            <button>➕ Add Book</button>
+        </a>
+
+    <h2>Available Books</h2>
+
+    <table>
+
+        <tr>
+
+            <th>ID</th>
+            <th>Book Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Action</th>
+
+        </tr>
+
+        {% for book in books %}
+
+        <tr>
+
+            <td>{{ book.id }}</td>
+
+            <td>{{ book.name }}</td>
+
+
+            <td>{{ book.category }}</td>
+
+            <td>{{ book.quantity }}</td>
+
+            <td>{{ book.status }}</td>
+
+            <td>
+            a href="{{ url_for('add_book') }}">
+                    <button>Add Book</button>
+                </a>
+            
+
+                <a href="{{ url_for('book_details', id=book.id) }}">
+                    Details
+                </a>
+
+                <a href="{{ url_for('issue', id=book.id) }}">
+                    Issue
+                </a>
+
+                <a href="{{ url_for('update', id=book.id) }}">
+                    Update
+                </a>
+
+                <a href="{{ url_for('delete', id=book.id) }}">
+                    ❌Delete
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+
+</html>
